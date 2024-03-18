@@ -478,7 +478,10 @@
                         let nomarchi = `${allData.usuariosbd[0].codsup}_${allData.usuariosbd[0].codconglo}_${allData.usuariosbd[0].codvivi}_${allData.usuariosbd[0].codhog}_${allData.usuariosbd[0].codencu}`
                         
                         console.error("nomarchi", nomarchi, allData)
-                        delete allData.usuariosfinalbd
+
+                        //importante cambio
+
+                        //delete allData.usuariosfinalbd
                         exportCombinedCollections(allData, nomarchi)
                         eliminaDatos()
 
