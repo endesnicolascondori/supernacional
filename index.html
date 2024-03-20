@@ -418,8 +418,18 @@
 
                     // Crear un objeto para almacenar en el almacén
                     console.log("ddd",usuarios, viviendas)
-                    objeto = { id:1, usu: usuarios ,conglo: conglomerados
+                    // objeto = { id:1, usu: usuarios ,conglo: conglomerados
+                    //           ,vivi: viviendas, segmen:segmen, marco:marco};
+
+                    if(data.length == 0){
+                        objeto = { id:1, usu: usuarios ,conglo: conglomerados
                               ,vivi: viviendas, segmen:segmen, marco:marco};
+                    }else{
+                        objeto = { id:1, usu: usuarios ,conglo: [ data[0].conglo, conglomerados].flat(Infinity)
+                              ,vivi: [data[0].vivi,  viviendas].flat(Infinity), segmen:[data[0].segmen, segmen].flat(Infinity), marco:marco};
+                    }
+
+                    objectStore.clear()
 
                 
 
@@ -1141,7 +1151,7 @@
 
         async function fetchData(codsupnacio, codsup,codencu,codconglo,codvivi,codhog) {
             try {
-                const response = await fetch(`http://172.17.10.47/sysendes/public/api/examplenacional?codsupnacio=${codsupnacio}&codsup=${codsup}&codencu=${codencu}&codconglo=${codconglo}&codvivi=${codvivi}&codhog=${codhog}`); // Realiza la solicitud HTTP y espera la respuesta
+                const response = await fetch(`https://aplications.inei.gob.pe/WebEndesEncuesta/public/api/examplenacional?codsupnacio=${codsupnacio}&codsup=${codsup}&codencu=${codencu}&codconglo=${codconglo}&codvivi=${codvivi}&codhog=${codhog}`); // Realiza la solicitud HTTP y espera la respuesta
                 if (!response.ok) {
                 throw new Error('Error al obtener los datos'); // Maneja errores de respuesta no exitosa
                 }
@@ -1217,7 +1227,7 @@
 
             
             // Ejemplo de uso
-            const url = 'http://172.17.10.47/sysendes/public/api/examplenacional?';
+            const url = 'https://aplications.inei.gob.pe/WebEndesEncuesta/public/api/examplenacional?';
             const data = jsondata
 
             let arr = {}
